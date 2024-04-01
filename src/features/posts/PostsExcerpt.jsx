@@ -5,7 +5,12 @@ import ReactionButtons from "./ReactionButtons";
 import { Link } from "react-router-dom";
 import React from "react";
 
-let PostsExcerpt = ({ post }) => {
+import { useSelector } from "react-redux";
+import { selectPostById } from "./postsSlice";
+
+let PostsExcerpt = ({ postId }) => {
+  const post = useSelector((state) => selectPostById(state, postId));
+
   return (
     <article>
       <h2>{post.title}</h2>
@@ -20,5 +25,5 @@ let PostsExcerpt = ({ post }) => {
   );
 };
 
-PostsExcerpt = React.memo(PostsExcerpt);
+// PostsExcerpt = React.memo(PostsExcerpt);
 export default PostsExcerpt;
